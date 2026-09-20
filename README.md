@@ -72,52 +72,32 @@ git log --oneline -5
 | `app.py` | 브라우저의 요청을 받아 HTML을 전달하는 Flask 앱 |
 | `templates/index.html` | VM·컨테이너·Docker 요약 화면 |
 | `static/style.css` | 화면의 색상·배치·글자 서식 |
-| `requirements.txt` | 설치할 Python 라이브러리 목록 |
+| `requirements.txt` | 다음 Codespaces·Docker 수업에서 사용할 라이브러리 목록 |
 
 > clone은 **파일과 변경 이력**을 가져옵니다. Python 라이브러리 설치와 앱 실행은 따로 진행합니다.
 
-## 4. Ubuntu 실행 환경 구성
+## 4. Python·Flask 설치
 
-Ubuntu 22.04/24.04 LTS 기준입니다. **패키지 다운로드가 가능한 환경**에서 진행합니다.
-
-### ① Python과 기본 도구 설치
+Ubuntu 22.04/24.04 LTS 기준입니다. **다운로드가 가능한 환경에서 한 번만 설치**합니다.
 
 ```bash
 sudo apt update
-sudo apt install -y python3 python3-venv git curl
-python3 --version
+sudo apt install -y python3 python3-flask git curl
+python3 -m flask --version
 ```
 
-Git이 없어 3번을 진행하지 못했다면 도구 설치 후 3번으로 돌아갑니다.
+Flask 버전이 나오면 설치가 끝납니다. Git이 없어 3번을 진행하지 못했다면 설치 후 3번으로 돌아갑니다.
 
-### ② 프로젝트 전용 Python 가상환경 생성
-
-```bash
-cd ~/week4_practice
-python3 -m venv .venv
-source .venv/bin/activate
-```
-
-터미널 앞에 `(.venv)`가 표시되는지 확인합니다. **.venv는 Python 라이브러리를 분리하는 폴더**이며, VirtualBox의 가상머신과는 다릅니다.
-
-### ③ Flask 설치
-
-```bash
-python -m pip install -r requirements.txt
-python -m flask --version
-```
-
-Flask 버전이 출력되면 준비가 끝납니다. `.venv`는 GitHub에 올리지 않습니다.
+> Ubuntu에서는 위 명령으로 Flask까지 설치합니다. 별도의 pip 설치 과정은 필요하지 않습니다.
 
 ## 5. 앱 실행
 
-가상환경이 활성화된 `~/week4_practice`에서 실행합니다.
-
 ```bash
-python -m flask --app app run --host=0.0.0.0 --port=5000
+cd ~/week4_practice
+python3 app.py
 ```
 
-`Running on ...:5000`이 나오면 서버가 실행 중입니다. **이 터미널은 열어 둡니다.** `0.0.0.0`은 접속을 받을 범위를 지정하는 값이며 브라우저에 입력하는 주소가 아닙니다. 이 서버는 수업용 개발 서버입니다.
+`Running on ...:5000`이 나오면 서버가 실행 중입니다. **이 터미널은 열어 둡니다.** 앱이 5000번 포트로 접속을 받도록 설정되어 있습니다. 수업용 개발 서버입니다.
 
 ## 6. 서비스 확인
 
@@ -150,12 +130,11 @@ Windows 브라우저에서 [http://127.0.0.1:5000](http://127.0.0.1:5000)에 접
 
 ## 7. 종료와 다시 실행
 
-서버 터미널에서 **Ctrl+C**로 종료한 뒤 `deactivate`로 가상환경을 빠져나옵니다. 다음에 실행할 때는 설치를 반복하지 않습니다.
+서버 터미널에서 **Ctrl+C**로 종료합니다. 다음에는 아래 두 줄만 실행합니다.
 
 ```bash
 cd ~/week4_practice
-source .venv/bin/activate
-python -m flask --app app run --host=0.0.0.0 --port=5000
+python3 app.py
 ```
 
 ## 8. Vim으로 화면 문장 수정
@@ -167,14 +146,21 @@ python -m flask --app app run --host=0.0.0.0 --port=5000
 | 증상 | 확인할 내용 |
 |---|---|
 | apt·pip 인증서/다운로드 오류 | 학교에서는 설치를 멈추고 오류를 교수자에게 확인 |
-| `No module named flask` | `.venv` 활성화 후 `python -m pip install -r requirements.txt` 실행 여부 |
-| `Could not import 'app'` | `pwd`, `ls`로 `app.py`가 있는 폴더인지 확인 |
+| `No module named flask` | Ubuntu에서 `sudo apt install python3-flask` 설치 여부 |
+| `app.py` 파일을 찾을 수 없음 | `cd ~/week4_practice` 후 다시 실행 |
 | Ubuntu curl 접속 실패 | Flask가 실행 중인지, 포트가 5000인지 확인 |
-| Ubuntu는 200, Windows는 접속 실패 | `--host=0.0.0.0`, NAT 포트 전달, 방화벽 규칙 확인 |
+| Ubuntu는 200, Windows는 접속 실패 | VM 실행 상태, NAT 포트 전달, 방화벽 규칙 확인 |
 | 5000 포트 사용 중 | 이전 실습 서버를 Ctrl+C로 종료; Windows의 다른 앱이 사용 중이면 호스트 포트만 5001로 바꾸고 브라우저도 `:5001` 사용 |
 
 ## 다음 수업 연결
 
-다음 시간에는 **본인 저장소를 Codespaces에서 열고**, 같은 앱을 실행한 뒤 Dockerfile 작성 → 이미지 생성 → 컨테이너 실행으로 이어갑니다. Codespaces에는 저장소가 이미 있으므로 다시 clone하지 않습니다. `.venv` 생성·설치 후 앱을 실행하고 **Ports의 5000번 → 브라우저에서 열기**로 확인합니다. VirtualBox 포트 전달은 필요하지 않습니다.
+다음 시간에는 **본인 저장소를 Codespaces에서 열고**, 같은 앱을 실행한 뒤 Dockerfile 작성 → 이미지 생성 → 컨테이너 실행으로 이어갑니다. Codespaces에는 저장소가 이미 있으므로 다시 clone하지 않습니다. Codespaces 터미널의 프로젝트 폴더에서 아래 명령을 실행합니다.
 
-참고: [Flask 설치](https://flask.palletsprojects.com/en/stable/installation/) · [Flask 실행](https://flask.palletsprojects.com/en/stable/quickstart/) · [GitHub Fork](https://docs.github.com/en/pull-requests/how-tos/work-with-forks/fork-a-repo)
+```bash
+python3 -m pip install -r requirements.txt
+python3 app.py
+```
+
+**Ports의 5000번 → 브라우저에서 열기**로 확인합니다. VirtualBox 포트 전달은 필요하지 않습니다.
+
+참고: [Ubuntu Flask 패키지](https://packages.ubuntu.com/noble/python3-flask) · [Flask 설치](https://flask.palletsprojects.com/en/stable/installation/) · [Flask 실행](https://flask.palletsprojects.com/en/stable/quickstart/) · [GitHub Fork](https://docs.github.com/en/pull-requests/how-tos/work-with-forks/fork-a-repo)
