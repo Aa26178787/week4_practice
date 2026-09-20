@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Week 4 · 가상머신과 컨테이너</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">CLOUD COMPUTING · WEEK 4</p>
+      <h1>가상머신과 컨테이너</h1>
+      <p class="lead">같은 프로젝트를 서로 다른 실행 환경에서 서비스하기</p>
+      <p class="status"><span aria-hidden="true">●</span> Flask 웹 페이지 응답 확인</p>
+    </header>
+
+    <section aria-labelledby="concepts">
+      <h2 id="concepts">핵심 개념</h2>
+      <div class="concept-grid">
+        <article>
+          <p class="number">01 · VIRTUAL MACHINE</p>
+          <h3>가상머신 <span>VM</span></h3>
+          <p>하나의 컴퓨터 안에서 <strong>별도의 운영체제</strong>를 실행하는 가상 컴퓨터</p>
+          <ul>
+            <li>VM마다 운영체제와 커널을 실행</li>
+            <li>하이퍼바이저가 CPU·메모리 등을 할당</li>
+          </ul>
+          <p class="example">이번 실습: VirtualBox에 Ubuntu 설치</p>
+        </article>
+        <article>
+          <p class="number">02 · CONTAINER</p>
+          <h3>컨테이너 <span>Container</span></h3>
+          <p><strong>호스트의 커널을 공유</strong>하면서 앱을 다른 앱과 격리하여 실행하는 환경</p>
+          <ul>
+            <li>컨테이너마다 전체 OS를 부팅하지 않음</li>
+            <li>앱과 필요한 라이브러리를 함께 사용</li>
+          </ul>
+          <p class="example">다음 실습: 이 Flask 앱을 컨테이너에서 실행</p>
+        </article>
+        <article>
+          <p class="number">03 · DOCKER</p>
+          <h3>도커 <span>Docker</span></h3>
+          <p>앱의 실행 환경을 <strong>이미지</strong>로 만들고 컨테이너를 실행·관리하는 도구</p>
+          <ul>
+            <li>이미지: 앱 실행에 필요한 파일 묶음</li>
+            <li>컨테이너: 이미지를 바탕으로 만든 실행 환경</li>
+          </ul>
+          <p class="example">실행 순서: Dockerfile → 이미지 → 컨테이너</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="comparison" aria-labelledby="compare">
+      <h2 id="compare">VM과 컨테이너 비교</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">구분</th><th scope="col">가상머신</th><th scope="col">컨테이너</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">실행 단위</th><td>운영체제가 설치된 가상 컴퓨터</td><td>격리된 애플리케이션 프로세스</td></tr>
+            <tr><th scope="row">커널</th><td>VM마다 별도로 실행</td><td>실행 호스트의 커널 공유</td></tr>
+            <tr><th scope="row">시작과 자원</th><td>OS 부팅과 자원 할당 필요</td><td>일반적으로 시작이 빠르고 가벼움</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">컨테이너는 VM 안에서도 실행할 수 있습니다. Linux 컨테이너에는 Linux 커널이 필요합니다.</p>
+    </section>
+
+    <section class="practice" aria-labelledby="practice">
+      <h2 id="practice">실습 연결</h2>
+      <ol class="steps">
+        <li><b>저장소 복제</b><span>내 GitHub 저장소 → Ubuntu</span></li>
+        <li><b>실행 환경 구성</b><span>Python 가상환경 → Flask 설치</span></li>
+        <li><b>서비스 확인</b><span>앱 실행 → 브라우저 접속</span></li>
+      </ol>
+      <p class="note">Git clone은 파일과 변경 이력을 가져옵니다. 라이브러리 설치와 앱 실행은 별도 과정입니다.</p>
+      <p class="note">Python 가상환경(.venv)은 프로젝트별 라이브러리를 분리합니다. 가상머신(VM)과는 다릅니다.</p>
+    </section>
+    <!-- Vim 실습: 아래 문장을 본인의 문장으로 수정하고 저장합니다. -->
+    <footer>나의 실습 기록: Ubuntu에서 프로젝트를 실행했습니다.</footer>
+  </main>
+</body>
+</html>

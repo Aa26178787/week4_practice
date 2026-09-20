@@ -1,0 +1,40 @@
+:root { color-scheme: light; --blue: #225d8c; --light: #edf4fa; --red: #b32626; --ink: #172a3b; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f5f8fb; color: var(--ink); font-family: "나눔스퀘어", "NanumSquare", "Malgun Gothic", sans-serif; line-height: 1.5; word-break: keep-all; overflow-wrap: break-word; }
+main { max-width: 1160px; margin: 0 auto; padding: 44px 28px 24px; }
+header { border-top: 8px solid #a8cce7; padding: 26px 30px; border-radius: 8px; background: #e3edf8; }
+.eyebrow, .number { font-size: 12px; font-weight: 800; letter-spacing: .08em; color: var(--blue); }
+h1 { font-size: clamp(28px, 4vw, 40px); line-height: 1.25; margin: 10px 0; }
+.lead { margin: 0; font-size: 17px; }
+.status { display: inline-block; margin: 20px 0 0; padding: 6px 12px; border-radius: 5px; background: white; color: #245b4c; font-size: 13px; }
+.status span { margin-right: 6px; }
+section { margin-top: 30px; }
+h2 { font-size: 21px; margin: 0 0 14px; }
+h3 { font-size: 23px; margin: 10px 0 16px; }
+h3 span { display: block; color: #5a6b7b; font-size: 14px; font-weight: 400; }
+.concept-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+article { padding: 22px; border: 1px solid #d6e1ec; border-radius: 8px; background: white; }
+article p { margin: 0 0 14px; }
+strong { color: var(--red); }
+ul { padding-left: 20px; font-size: 14px; }
+li + li { margin-top: 8px; }
+.example { color: #32678e; font-size: 13px; border-top: 1px solid #e0e8ef; padding-top: 14px; }
+article .example { margin-bottom: 0; }
+.comparison, .practice { background: white; border: 1px solid #d6e1ec; border-radius: 8px; padding: 24px; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; text-align: left; font-size: 15px; }
+th, td { padding: 12px; border-bottom: 1px solid #dce6ef; }
+thead th { background: var(--light); }
+tbody th { white-space: nowrap; }
+.note { color: #32678e; font-size: 13px; font-style: italic; margin: 15px 0 0; }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; list-style-position: inside; padding: 0; }
+.steps li { background: var(--light); border-radius: 5px; padding: 15px; margin: 0; }
+.steps span { display: block; margin-top: 6px; font-size: 13px; color: #526777; }
+footer { padding: 24px 0; color: #536678; font-size: 14px; }
+@media (max-width: 760px) {
+  main { padding: 20px 16px; }
+  header { padding: 20px; }
+  .concept-grid, .steps { grid-template-columns: 1fr; }
+  .comparison, .practice { padding: 18px; }
+  th, td { padding: 10px 8px; font-size: 13px; }
+}
