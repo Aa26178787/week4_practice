@@ -10,7 +10,7 @@
 
 ### 방법 A. Fork (권장)
 
-1. 브라우저에서 [교수자 저장소](https://github.com/Mok2Lee/week4_practice)를 엽니다.
+1. 브라우저에서 [원격 저장소](https://github.com/Mok2Lee/week4_practice)를 엽니다.
 2. **Fork → Create a new fork**를 선택합니다.
 3. Owner를 **본인 계정**, 이름을 **week4_practice**로 지정해 생성합니다.
 4. 주소가 `https://github.com/본인계정/week4_practice`인지 확인합니다.
